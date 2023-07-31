@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -50,6 +52,10 @@ public class Trabajador implements Serializable{
 	@Column(name = "fecha_modif")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updateAt;	
+	
+	@ManyToOne
+	@JoinColumn(name = "empresa_id", insertable = false, nullable=false)
+	private Empresa empresa;
 	
 	
 

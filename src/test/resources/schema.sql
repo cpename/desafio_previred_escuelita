@@ -3,8 +3,7 @@ DROP TABLE IF EXISTS empresas;
 
 CREATE TABLE empresas(
   empresa_id INT AUTO_INCREMTEN PRIMARY KEY,
-  rut_empresa int UNIQUE NOT NULL,
-  digito_verif int,
+  rut_empresa int UNIQUE NOT NULL
   razon_social varchar(250),
   fecha_inser timestamp DEFAULT (now()),
   fecha_modif timestamp,

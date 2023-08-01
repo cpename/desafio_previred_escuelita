@@ -15,6 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
+import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.cpena.previred.backend.apirest.domain.repositories.EmpresaRepository;
@@ -49,7 +52,10 @@ public class EmpresaServiceTest {
 	
 	
 	
-	@Test	
+	@Test
+	@SqlGroup({		
+		@Sql(value = "classpath:init/empresa-data.sql", executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+	})
 	void testAgregarEmpresa() throws InvocationTargetException {
 		
 //		Given

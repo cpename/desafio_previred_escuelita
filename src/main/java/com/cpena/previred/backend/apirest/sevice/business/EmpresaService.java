@@ -1,9 +1,13 @@
 package com.cpena.previred.backend.apirest.sevice.business;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.internal.bytebuddy.description.type.TypeVariableToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -102,6 +106,17 @@ public class EmpresaService {
 		Empresa empresa = convertToEntity(busquedaEmpresaPorId(empresaId));		
 		
 		empresaRepository.delete(empresa);
+	}
+	
+	public List<EmpresaDto> obtenerEmpresas(){
+		List<Empresa> empresas = empresaRepository.findAll();
+		List<EmpresaDto> empresaDtoList = empresas
+				.stream()
+				.map( empresa -> modelMapper.map(empresa, EmpresaDto.class) )
+				.collect(Collectors.toList());
+		
+		return empresaDtoList;
+		
 	}
 	
 	/**

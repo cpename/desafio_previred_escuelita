@@ -4,6 +4,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -171,6 +172,16 @@ public class EmpresaServiceTest extends ServiceTest {
 		assertEquals(9999L, empresaAuxDto.getId());
 		assertEquals(ErrorMessageEnum.EMPRESA_NO_ENCONTRADA.getCode(), exception.getError().getErrorCode());
 		assertEquals(ErrorMessageEnum.EMPRESA_NO_ENCONTRADA.getMessage(), exception.getError().getErrorMessage());		
+	}
+	
+	@Test
+	void testObtenerEmpresas() {
+//		given
+//		when		
+		List<EmpresaDto> empresas = empresaService.obtenerEmpresas();
+//		then
+		assertNotNull(empresas);
+		
 	}
 	
 	// ******

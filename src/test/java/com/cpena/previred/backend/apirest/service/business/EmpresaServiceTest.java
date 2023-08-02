@@ -1,30 +1,15 @@
 package com.cpena.previred.backend.apirest.service.business;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-
-import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.ClassOrderer.OrderAnnotation;
-import org.junit.jupiter.api.DisplayNameGeneration;
-import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.platform.commons.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
-import org.springframework.test.context.jdbc.SqlGroup;
-import org.springframework.test.web.servlet.MockMvc;
-
 import com.cpena.previred.backend.apirest.domain.entities.Empresa;
 import com.cpena.previred.backend.apirest.domain.repositories.EmpresaRepository;
 import com.cpena.previred.backend.apirest.sevice.business.EmpresaService;
@@ -32,7 +17,6 @@ import com.cpena.previred.backend.apirest.sevice.dtos.EmpresaDto;
 import com.cpena.previred.backend.apirest.sevice.dtos.UpdateEmpresaDto;
 import com.cpena.previred.backend.apirest.sevice.dtos.exceptions.PreviredException;
 import com.cpena.previred.backend.apirest.sevice.enums.ErrorMessageEnum;
-import com.cpena.previred.backend.apirest.sevice.utils.GeneralUtils;
 import com.cpena.previred.backend.apirest.utils.ServiceTest;
 
 import static org.junit.jupiter.api.Assertions.*;

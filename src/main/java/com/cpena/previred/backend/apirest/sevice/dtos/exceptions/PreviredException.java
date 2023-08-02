@@ -28,12 +28,12 @@ public class PreviredException extends ResponseStatusException{
 	
 	public PreviredException( HttpStatus status, ErrorMessageEnum error ) {
 		super(status, error.getMessage());
-		this.error = new PreviredError(error.getCode(), error.getMessage());
+		this.error = new PreviredError(error.getMessage(), error.getCode());
 	}
 	
 	public PreviredException( HttpStatus status, ErrorMessageEnum error, Throwable cause ) {
 		super(status, error.getMessage(), cause);
-		this.error = new PreviredError(error.getCode(), error.getMessage());
+		this.error = new PreviredError(error.getMessage(), error.getCode());
 		
 	}
 	

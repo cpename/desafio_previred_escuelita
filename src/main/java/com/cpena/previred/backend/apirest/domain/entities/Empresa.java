@@ -35,10 +35,10 @@ public class Empresa implements Serializable{
 	@SequenceGenerator(name = "empresa_id_seq", sequenceName = "empresa_id_seq", allocationSize = 1)
 	private Long id;
 	
-	@Column(name = "rut_empresa", nullable = false, unique = true)
+	@Column(name = "rut_empresa", nullable = false, unique = true, length = 9)
 	private Integer rut;
 	
-	@Column(name = "razon_social")
+	@Column(name = "razon_social", length = 250)
 	private String razonSocial;
 	
 	@Column(name = "fecha_inser", nullable = false)
@@ -49,10 +49,10 @@ public class Empresa implements Serializable{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updateAt;
 	
-	@Column(name = "identificador", length = 50, unique = true)
+	@Column(name = "identificador", length = 50, unique = true, nullable = false)	
 	private String identificadorEmpresa;
 	
-	@OneToMany(mappedBy = "empresa", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "empresa", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private Set<Trabajador> trabajadores;
 	
 	

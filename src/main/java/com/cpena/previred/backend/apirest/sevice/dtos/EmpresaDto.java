@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.Length;
 import com.cpena.previred.backend.apirest.constants.Messages;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,8 +22,7 @@ public class EmpresaDto {
 	
 	private Long id;
 	
-	@NotBlank(message = Messages.RUT_EMPRESA_OBLIGATORIO)
-	@Length(max = 9, message = Messages.RUT_EMPRESA_MUY_LARGO)
+	@NotNull(message = Messages.RUT_EMPRESA_OBLIGATORIO)	
 	private Integer rut;
 	
 	@Length(max = 250, message = Messages.RAZON_SOCIAL_MUY_LARGO)
@@ -34,6 +34,7 @@ public class EmpresaDto {
 	
 	@Length(max = 50, message = Messages.IDENTIFICADOR_EMPRESA_MUY_LARTO)
 	@Length(min = 10, message = Messages.IDENTIFICADOR_EMPRESA_MUY_CORTO)
+	@NotBlank(message = Messages.IDENTIFICADOR_EMPRESA_OBLIGATORIO)
 	private String identificadorEmpresa;
 	
 }

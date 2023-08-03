@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS trabajadores;
-DROP TABLE IF EXISTS empresas;
+DROP TABLE IF EXISTS trabajadores cascade;;
+DROP TABLE IF EXISTS empresas cascade;
 
 CREATE TABLE "empresas" (
   "empresa_id" SERIAL UNIQUE PRIMARY KEY,
@@ -13,12 +13,20 @@ CREATE TABLE "empresas" (
 
 CREATE TABLE "trabajadores" (
   "trabajador_id" SERIAL UNIQUE PRIMARY KEY,
+  empresa_id int,
   "rut_trabajador" int UNIQUE NOT NULL,
   "nombre" varchar(50),
   "apellido" varchar(50),
   "fecha_inser" timestamp DEFAULT (now()),
   "fecha_modif" timestamp,
-  "direccion" varchar(250)
+  "direccion" varchar(250),
+   CONSTRAINT fk_empresa_id
+   FOREIGN KEY(empresa_id)
+   REFERENCES empresas(empresa_id)
+   ON DELETE NO ACTION
+  
 );
 
-ALTER TABLE "trabajadores" ADD FOREIGN KEY ("trabajador_id") REFERENCES "empresas" ("empresa_id");
+-- PRIMARY KEY(sportsperson_id),
+
+--ALTER TABLE "trabajadores" ADD FOREIGN KEY ("trabajador_id") REFERENCES "empresas" ("empresa_id");

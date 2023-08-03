@@ -2,6 +2,7 @@ package com.cpena.previred.backend.apirest.domain.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
@@ -27,7 +28,7 @@ import lombok.Setter;
 @Setter
 public class Trabajador implements Serializable{
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 3865586469933888797L;
 	
 	@Id
 	@Column(name = "trabajador_id")
@@ -60,6 +61,28 @@ public class Trabajador implements Serializable{
 		foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT,
 			foreignKeyDefinition = "FOREIGN KEY (empresa_id) REFERENCES empresas(empresa_id) ON DELETE CASCADE" ))
 	private Empresa empresa;
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(apellido, creatAt, direccion, empresa, id, nombre, rut, updateAt);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Trabajador other = (Trabajador) obj;
+		return Objects.equals(apellido, other.apellido) && Objects.equals(creatAt, other.creatAt)
+				&& Objects.equals(direccion, other.direccion) && Objects.equals(empresa, other.empresa)
+				&& Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre)
+				&& Objects.equals(rut, other.rut) && Objects.equals(updateAt, other.updateAt);
+	}
+	
+	
 	
 	
 

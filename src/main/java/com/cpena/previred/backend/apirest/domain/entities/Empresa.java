@@ -2,6 +2,7 @@ package com.cpena.previred.backend.apirest.domain.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -27,7 +28,7 @@ import lombok.Setter;
 @Setter
 public class Empresa implements Serializable{
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 6395640401966812691L;
 	
 	@Id
 	@Column(name = "empresa_id")
@@ -54,6 +55,26 @@ public class Empresa implements Serializable{
 	
 	@OneToMany(mappedBy = "empresa", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private Set<Trabajador> trabajadores;
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(createAt, id, identificadorEmpresa, razonSocial, rut, trabajadores, updateAt);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Empresa other = (Empresa) obj;
+		return Objects.equals(createAt, other.createAt) && Objects.equals(id, other.id)
+				&& Objects.equals(identificadorEmpresa, other.identificadorEmpresa)
+				&& Objects.equals(razonSocial, other.razonSocial) && Objects.equals(rut, other.rut)
+				&& Objects.equals(trabajadores, other.trabajadores) && Objects.equals(updateAt, other.updateAt);
+	}
 	
 	
 

@@ -1,13 +1,10 @@
 package com.cpena.previred.backend.apirest.sevice.business;
 
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
-import org.modelmapper.internal.bytebuddy.description.type.TypeVariableToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -18,7 +15,6 @@ import com.cpena.previred.backend.apirest.sevice.dtos.EmpresaDto;
 import com.cpena.previred.backend.apirest.sevice.dtos.UpdateEmpresaDto;
 import com.cpena.previred.backend.apirest.sevice.dtos.exceptions.PreviredException;
 import com.cpena.previred.backend.apirest.sevice.enums.ErrorMessageEnum;
-import com.cpena.previred.backend.apirest.sevice.utils.GeneralUtils;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -43,6 +39,13 @@ public class EmpresaService {
 	public EmpresaDto createEmpresa( EmpresaDto empresaDto ) {
 		
 		Empresa empresa = convertToEntity(empresaDto);
+		empresa.setCreateAt(new Date());
+		
+		List<Empresa> empresas = empresaRepository.findByIdentificadorEmpresaOrRut(empresaDto.getIdentificadorEmpresa(), empresaDto.getRut());
+		if(empresas.size() >= 1 ) {
+			throw new PreviredException(HttpStatus.BAD_REQUEST, ErrorMessageEnum.RUT_OR_IDENTIFICADOR_YA_EXISTE);
+		}
+		
 		Empresa nuevaEmpresa = empresaRepository.save(empresa);
 		
 		return convertToDto(nuevaEmpresa);
@@ -63,7 +66,7 @@ public class EmpresaService {
 		empresaActual.setRut(empresaActualDto.getRut());
 		empresaActual.setUpdateAt(new Date());
 		empresaActual.setIdentificadorEmpresa(empresaActualDto.getIdentificadorEmpresa());
-		
+				
 		return convertToDto( empresaRepository.save(empresaActual) );
 	}
 	

@@ -7,6 +7,7 @@ import java.util.Objects;
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -56,10 +57,8 @@ public class Trabajador implements Serializable{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updateAt;	
 	
-	@ManyToOne
-	@JoinColumn(name = "empresa_id", insertable = false, nullable=false, 
-		foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT,
-			foreignKeyDefinition = "FOREIGN KEY (empresa_id) REFERENCES empresas(empresa_id) ON DELETE CASCADE" ))
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "empresa_id")
 	private Empresa empresa;
 
 	@Override

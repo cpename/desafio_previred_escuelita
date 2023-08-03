@@ -1,3 +1,15 @@
+
+-- Create the database
+--CREATE DATABASE previred;
+
+
+-- Create the role
+--CREATE ROLE previred LOGIN PASSWORD 'previred';
+
+-- Grant all permissions to the role
+--GRANT ALL PRIVILEGES ON DATABASE previred TO previred;
+
+
 DROP TABLE IF EXISTS trabajadores cascade;;
 DROP TABLE IF EXISTS empresas cascade;
 
